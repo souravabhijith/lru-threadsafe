@@ -41,6 +41,12 @@ public class LRUCache implements ICache {
 
     @Override
     public boolean delete(String key) {
+        if (map.containsKey(key)) {
+            asyncUpdater.addRequest(new CacheUpdateRequest(RequestType.DELETE, key, null ));
+            return true;
+        } else {
+            System.out.println("Element dosent exist " + key);
+        }
         return false;
     }
 }
