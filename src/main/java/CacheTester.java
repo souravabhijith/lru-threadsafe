@@ -1,7 +1,7 @@
 public class CacheTester {
 
     public static void main(String[] args) throws Exception {
-        LRUCache lruCache = new LRUCache(5);
+        LRUCache lruCache = new LRUCache(2);
         System.out.println("Adding A as 1");
         lruCache.put("A", "1");
         System.out.println("Immediately Getting A gives value as " + lruCache.get("A"));

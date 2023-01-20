@@ -13,6 +13,7 @@ public class LRUCache implements ICache {
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
+        queue.maxSize = capacity;
         this.asyncUpdater = new CacheAsyncUpdater(map, queue);
     }
 

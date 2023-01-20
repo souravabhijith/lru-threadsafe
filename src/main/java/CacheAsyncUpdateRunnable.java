@@ -27,15 +27,23 @@ public class CacheAsyncUpdateRunnable implements Runnable {
                 } else {
                     Node node = queue.add(key, value);
                     map.put(key, node);
-                    if (queue.getSize() > map.size()) {
+                    if (queue.getSize() > queue.maxSize) {
                         String removedKey = queue.removeNodeAtLast();
+                        System.out.println("Removed key " + removedKey);
                         if (removedKey != null) {
                             map.remove(removedKey);
                         }
                     }
                 }
-            } else {
+            } else if (request.type == RequestType.GET ){
                queue.moveToHead(map.get(request.key));
+            } else if (request.type == RequestType.DELETE) {
+                queue.remove(map.get(key));
+                map.remove(request.key);
+            } else if (request.type == RequestType.CLEAR_LAST) {
+                String removedKey = queue.removeNodeAtLast();
+                System.out.println("Removed " + removedKey);
+                map.remove(removedKey);
             }
         }
     }

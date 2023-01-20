@@ -2,6 +2,7 @@ public class LinkedList implements IList {
     Node head;
     Node tail;
     int size = 0;
+    int maxSize;
 
     @Override
     public Node add(String key, String value) {
